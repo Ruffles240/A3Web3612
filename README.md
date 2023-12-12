@@ -41,7 +41,11 @@ https://raphs-painting-getter.glitch.me/api/painting/color/kcvhvxchbkcj
 https://raphs-artists.glitch.me/api/artists
 
 https://raphs-artists.glitch.me/api/artists/Netherlands
+
 https://raphs-artists.glitch.me/api/artists/sdfjjsdf
+
 https://raphs-gallery-api.glitch.me/api/galleries
+
 https://raphs-gallery-api.glitch.me/api/galleries/france
+
 https://raphs-gallery-api.glitch.me/api/galleries/kcvhvxchbkcj
