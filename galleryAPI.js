@@ -35,22 +35,37 @@ app.listen(port, () => {
 */
   loadData(jsonPathGalleries).then(galleries => {
     if (galleries) {
-       
-        /**
-         *The handler to search by return all galleries
-         *
-         */
-       app.get('/api/galleries', (req, resp) => { resp.json(galleries); });
-        
-        /**
-         *The handler to search by country
-         *
-         */
-       app.get('/api/galleries/:country', (req, resp) => { 
+  /**
+        *For default paths
+        */
+        app.get('', (req, resp) => {
+            resp.status(404).send("This is Raph's API, please use the /api/ paths specified in this GitHub repository https://github.com/Ruffles240/A3Web3612 to get your data");
+          });
          
-         const filteredGalleries = galleries.filter(a=> a.GalleryCountry.toLowerCase() == req.params.country.toLowerCase());
-         filteredGalleries.length ? resp.json(filteredGalleries): resp.status(404).send('No Galleries in that Country');
-     });
+         
+         /**
+          *The handler to search by return all galleries
+          *
+          */
+        app.get('/api/galleries', (req, resp) => { resp.json(galleries); });
+         
+         /**
+          *The handler to search by country
+          *
+          */
+        app.get('/api/galleries/:country', (req, resp) => { 
+          
+          const filteredGalleries = galleries.filter(a=> a.GalleryCountry.toLowerCase() == req.params.country.toLowerCase());
+          filteredGalleries.length ? resp.json(filteredGalleries): resp.status(404).send('No Galleries in that Country');
+      });
+         
+         /**
+         *For invalid paths
+         *
+         */
+        app.get('*', (req, resp) => {
+          resp.status(404).send("Invalid paths, please use the /api/ paths specified in this GitHub repository https://github.com/Ruffles240/A3Web3612 to get your data");
+        });
       
      } else {
        console.log("Failed to load data, not starting server");

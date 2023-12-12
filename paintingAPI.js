@@ -35,7 +35,18 @@ app.listen(port, () => {
 * The request handlers
 */
 loadData(jsonPathPaintings).then(paintings => {if (paintings) {
+
         
+    /**
+    *For default paths
+    */
+    app.get('', (req, resp) => {
+      resp.status(404).send("This is Raph's API, please use the /api/ paths specified in this GitHub repository https://github.com/Ruffles240/A3Web3612 to get your data");
+    });
+   
+  
+    
+    
   /**
     *The handler to get all of the paintings
     *
@@ -65,23 +76,24 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
     const titlePaintings = paintings.filter(p => p.title.toLowerCase().includes(req.params.text.toLowerCase()));
     titlePaintings.length ? resp.json(titlePaintings): resp.status(404).send('No Paintings matching that Search');
   });
+    
+/**
+*The handler to search by color
+*
+*/
+app.get('/api/painting/color/:text', (req, resp) => {
+  const colorPaintings = paintings.filter(p => {
+    for(let colour of p.details.annotation.dominantColors){
+      console.log(colour.name);
+      if(colour.name.toLowerCase()==req.params.text.toLowerCase()){
+        return true;
+      }
+    }
+    return false;});
+  colorPaintings.length ? resp.json(colorPaintings): resp.status(404).send('No Paintings with this color');
+});
 
-     /**
-    *The handler to search by color
-    *
-    */
-    app.get('/api/painting/color/:text', (req, resp) => {
-      const colorPaintings = paintings.filter(p => {
-        for(let colour of p.details.annotation.dominantColors){
-          console.log(colour.name);
-          if(colour.name.toLowerCase()==req.params.text.toLowerCase()){
-            return true;
-          }
-        }
-        return false;});
-      colorPaintings.length ? resp.json(colorPaintings): resp.status(404).send('No Paintings with this color');
-    });
-
+ 
   /**
     *The handler to search by artist ID
     *
@@ -102,6 +114,13 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
       p.yearOfWork >= parseInt(min) && p.yearOfWork <= parseInt(max)
     );
     yearFilteredPaintings.length ? resp.json(yearFilteredPaintings): resp.status(404).send('No Paintings for that range');
+  });
+  /**
+   *For invalid paths
+   *
+   */
+  app.get('*', (req, resp) => {
+    resp.status(404).send("Invalid paths, please use the /api/ paths specified in this GitHub repository https://github.com/Ruffles240/A3Web3612 to get your data");
   });
 
   
