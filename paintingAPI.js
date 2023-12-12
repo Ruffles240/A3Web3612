@@ -45,7 +45,7 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
     *The handler to search by ID
     *
     */
-  app.get('/api/paintings/:id', (req, resp) => {
+  app.get('/api/painting/:id', (req, resp) => {
     const painting = paintings.find(p => p.paintingID == req.params.id);
     painting ? resp.json(painting) : resp.status(404).send('Painting not found');
   });
@@ -53,7 +53,7 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
     *The handler to search by Gallery ID
     *
     */
-  app.get('/api/paintings/gallery/:id', (req, resp) => {
+  app.get('/api/painting/gallery/:id', (req, resp) => {
     const galleryPaintings = paintings.filter(p => p.gallery.galleryID == req.params.id);
     galleryPaintings.length ? resp.json(galleryPaintings): resp.status(404).send('No Paintings for that Gallery');
   });
@@ -61,7 +61,7 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
     *The handler to search by title
     *
     */
-  app.get('/api/paintings/title/:text', (req, resp) => {
+  app.get('/api/painting/title/:text', (req, resp) => {
     const titlePaintings = paintings.filter(p => p.title.toLowerCase().includes(req.params.text.toLowerCase()));
     titlePaintings.length ? resp.json(titlePaintings): resp.status(404).send('No Paintings matching that Search');
   });
@@ -70,7 +70,7 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
     *
     */
 
-  app.get('/api/paintings/artist/:id', (req, resp) => {
+  app.get('/api/painting/artist/:id', (req, resp) => {
     const artistPaintings = paintings.filter(p => p.artist.artistID == req.params.id);
     artistPaintings.length ? resp.json(artistPaintings): resp.status(404).send('No Paintings for that Artist');
    
@@ -79,7 +79,7 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
     *The handler to search by year range
     *
     */
-  app.get('/api/paintings/year/:min/:max', (req, resp) => {
+  app.get('/api/painting/year/:min/:max', (req, resp) => {
     const { min, max } = req.params;
     const yearFilteredPaintings = paintings.filter(p =>
       p.yearOfWork >= parseInt(min) && p.yearOfWork <= parseInt(max)
