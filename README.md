@@ -57,30 +57,43 @@ Here are the path instructions, append these to the end of your API(Filling in p
 For the Paintings API
 
 /api/paintings 
+
 Returns JSON for all paintings
 
+
 /api/painting/id
+
 Returns JSON for the single painting whose id
 matches the provided id.
 
+
 /api/painting/gallery/id 
+
 Returns JSON for the paintings whose gallery id
 matches the provided gallery id.
 
+
 /api/painting/artist/id 
+
 Returns JSON for the paintings whose artist id
 matches the provided artist id.
 
+
 /api/painting/year/min/max
+
 Returns all paintings whose yearOfWork field is
 between the two supplied values.
 
+
 /api/painting/title/text 
+
 Returns JSON for the paintings whose title contains
 (somewhere) the provided text. This search should
 be case insensitive.
 
+
 /api/painting/color/name 
+
 Returns JSON for the paintings that have a color that
 matches the provided hex value. Each painting has a
 dominantColors array with the six most common
@@ -90,13 +103,18 @@ the name for that color. This should be case
 insensitive.
 
 
+
+
 For the Artists API
 
 
 /api/artists
+
 Returns JSON for all artists
 
+
 /api/artists/country 
+
 Returns JSON for all artists from the specified
 country. This should be case insensitive.
 
@@ -104,8 +122,11 @@ country. This should be case insensitive.
 For the Galleries API
 
 /api/galleries 
+
 Returns JSON for all galleries
 
-/api/galleries/country 
+
+/api/galleries/country
+
 Returns JSON for all galleries from the specified
 country. This should be case insensitive.
