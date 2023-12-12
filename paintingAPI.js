@@ -66,21 +66,22 @@ loadData(jsonPathPaintings).then(paintings => {if (paintings) {
     titlePaintings.length ? resp.json(titlePaintings): resp.status(404).send('No Paintings matching that Search');
   });
 
-  /**
+     /**
     *The handler to search by color
     *
     */
     app.get('/api/painting/color/:text', (req, resp) => {
       const colorPaintings = paintings.filter(p => {
-      
-        p.dominantColors.find(color => color.toLowerCase()==req.params.text.toLowerCase())!==undefined}
-        
-    
-        );
-
-
+        for(let colour of p.details.annotation.dominantColors){
+          console.log(colour.name);
+          if(colour.name.toLowerCase()==req.params.text.toLowerCase()){
+            return true;
+          }
+        }
+        return false;});
       colorPaintings.length ? resp.json(colorPaintings): resp.status(404).send('No Paintings with this color');
     });
+
   /**
     *The handler to search by artist ID
     *
