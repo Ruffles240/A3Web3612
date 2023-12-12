@@ -1,0 +1,22 @@
+{
+  "name": "artpi",
+  "version": "1.0.0",
+  "description": "My assignment",
+  "main": "\u001bmmain.js",
+  "scripts": {
+    "test": "wda"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ruffles240/A3Web3612.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ruffles240/A3Web3612/issues"
+  },
+  "homepage": "https://github.com/Ruffles240/A3Web3612#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
